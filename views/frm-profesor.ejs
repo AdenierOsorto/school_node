@@ -1,0 +1,47 @@
+<div class="row mt-3">
+    <div class="col">
+        <label for="profesorDNI" class="form-label">Número de Identidad</label>
+        <input type="number" name="profesorDNI" id="profesorDNI" class="form-control" required value="<%= typeof data.DNI != 'undefined' ? data.DNI:''  %>" <%= typeof data.DNI != 'undefined' ? 'readonly':''  %>>
+    </div>
+    <div class="col">
+        <label for="profesorNombre" class="form-label">Nombres</label>
+        <input type="text" name="profesorNombre" id="profesorNombre" class="form-control" required value="<%= typeof data.nombreProfesor != 'undefined' ? data.nombreProfesor:''  %>">
+    </div>
+    <div class="col">
+        <label for="profesorApellidos" class="form-label">Apellidos</label>
+        <input type="text" name="profesorApellidos" id="profesorApellidos" class="form-control" required value="<%= typeof data.apellidoProfesor != 'undefined' ? data.apellidoProfesor:''  %>">
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col">
+        <label for="profesorCorreo" class="form-label">Correo Electrónico</label>
+        <input type="email" name="profesorCorreo" id="profesorCorreo" class="form-control" required value="<%= typeof data.email != 'undefined' ? data.email:''  %>">
+    </div>
+    <div class="col">
+        <label for="profesorDireccion" class="form-label">Direccion</label>
+        <input type="text" name="profesorDireccion" id="profesorDireccion" class="form-control" required value="<%= typeof data.direccion != 'undefined' ? data.direccion:''  %>">
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col">
+        <label for="profesorTelefono" class="form-label">Número de Teléfono</label>
+        <input type="number" name="profesorTelefono" id="profesorTelefono" class="form-control" required value="<%= typeof data.telefono != 'undefined' ? data.telefono:''  %>">
+    </div>
+    <div class="col">
+        <label for="profesorSexo" class="form-label">Sexo</label>
+        <select name="profesorSexo" id="profesorSexo" class="form-select" required>
+            <option value="" disabled>Seleccione un sexo</option>
+            <option value="0" <%= typeof data.sexo != 'undefined' ? data.sexo== 0 ? 'selected':'' :''  %>>Femenino</option>
+            <option value="1" <%= typeof data.sexo != 'undefined' ? data.sexo== 1 ? 'selected':'' :''  %>>Másculino</option>
+        </select>
+    </div>
+    <input type="text" name="idprofesor" id="idprofesor" value="<%= typeof data.idprofesor != 'undefined' ? data.idprofesor:''  %>" style="display: none;">
+</div>
+<div class="row mt-3">
+    <div class="col d-grid gap-2">
+        <button class="btn btn-outline-dark" type="submit">Guardar</button>
+    </div>
+    <div class="col d-grid gap-2">
+        <a href="/profesores" class="btn btn-outline-dark">Regresar</a>
+    </div>
+</div>
