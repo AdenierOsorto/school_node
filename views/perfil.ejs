@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es" class="h-100">
+
+<head>
+    <!-- Se incluye el documento parcial donde se almacena la codificacion de 
+    la parte del head -->
+    <%- include('./partials/head.ejs',{titulo: 'PROFILE'})  %>
+</head>
+
+<body class="d-flex flex-column h-100">
+    <header>
+        <!-- Se incluye el documento parcial donde se almacena la codificacion de 
+        la parte del encabezado -->
+        <%- include('./partials/nav.ejs')  %>
+    </header>
+    <main class="flex-shrink-0">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="text-center" id="profile-container">
+                        <img id="profileImage" src="/users/<%= data[0].DNI %>.png" class="shadow p-2 mt-3 img-fluid"
+                            style="cursor: pointer" onerror="this.src='/users/default.png';" data-id="<%= data[0].DNI %>">
+                    </div>
+                    <form action="/perfil/updateImg" id="fmr-img"  method="post" encType="multipart/form-data">
+                        <input id="imageUpload" type="file" name="profile_photo" placeholder="Photo" required="" capture
+                        style="display: none;">
+                        <input type="text" name="DNI"style="display: none;" value="<%= data[0].DNI %>">
+                    </form>
+                </div>
+                <div class="col-8">
+                    <div class="row mt-3 mb-3">
+                        <p>
+                            <h2><%= data[0].nombres %> <%= data[0].apellidos %></h2>
+                        </p>
+                    </div>
+                    <div class="row">
+                        <p>
+                            <h3 class="mb-3"><i class="fas fa-envelope"></i> <%= data[0].email %></h3>
+                        </p>
+                        <p>
+                            <h3 class="mb-3"><i class="fas fa-id-card"></i> <%= data[0].DNI %></h3>
+                        </p>
+                        <p>
+                            <h3 class="mb-3"><i class="fas fa-phone"></i> +504 <%= data[0].telefono %></h3>
+                        </p>
+                        <p>
+                            <h3 class="mb-3"><i class="fas fa-location-arrow"></i> <%= data[0].direccion %></h3>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Se incluye el documento parcial donde se almacena la codificacion de 
+    la parte del pie de página y scripts -->
+    <%- include('./partials/footer.ejs')  %>
+    <script src="/js/profile.js"></script>
+
+</body>
+
+</html>

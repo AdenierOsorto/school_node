@@ -1,0 +1,47 @@
+<div class="row mt-3">
+    <div class="col">
+        <label for="alumnoDNI" class="form-label">Número de Identidad</label>
+        <input type="number" name="alumnoDNI" id="alumnoDNI" class="form-control" required value="<%= typeof data.DNI != 'undefined' ? data.DNI:''  %>" <%= typeof data.DNI != 'undefined' ? 'readonly':''  %>>
+    </div>
+    <div class="col">
+        <label for="alumnoNombre" class="form-label">Nombres</label>
+        <input type="text" name="alumnoNombre" id="alumnoNombre" class="form-control" required value="<%= typeof data.nombres != 'undefined' ? data.nombres:''  %>">
+    </div>
+    <div class="col">
+        <label for="alumnoApellidos" class="form-label">Apellidos</label>
+        <input type="text" name="alumnoApellidos" id="alumnoApellidos" class="form-control" required value="<%= typeof data.apellidos != 'undefined' ? data.apellidos:''  %>">
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col">
+        <label for="alumnoCorreo" class="form-label">Correo Electrónico</label>
+        <input type="email" name="alumnoCorreo" id="alumnoCorreo" class="form-control" required value="<%= typeof data.email != 'undefined' ? data.email:''  %>">
+    </div>
+    <div class="col">
+        <label for="alumnoDireccion" class="form-label">Direccion</label>
+        <input type="text" name="alumnoDireccion" id="alumnoDireccion" class="form-control" required value="<%= typeof data.direccion != 'undefined' ? data.direccion:''  %>">
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col">
+        <label for="alumnoTelefono" class="form-label">Número de Teléfono</label>
+        <input type="number" name="alumnoTelefono" id="alumnoTelefono" class="form-control" required value="<%= typeof data.telefono != 'undefined' ? data.telefono:''  %>">
+    </div>
+    <div class="col">
+        <label for="alumnoSexo" class="form-label">Sexo</label>
+        <select name="alumnoSexo" id="alumnoSexo" class="form-select" required>
+            <option value="" disabled>Seleccione un sexo</option>
+            <option value="0" <%= typeof data.sexo != 'undefined' ? data.sexo== 0 ? 'selected':'' :''  %> >Femenino</option>
+            <option value="1" <%= typeof data.sexo != 'undefined' ? data.sexo== 1 ? 'selected':'' :''  %>>Másculino</option>
+        </select>
+    </div>
+    <input type="text" name="idAlumno" id="idAlumno" value="<%= typeof data.idAlumno != 'undefined' ? data.idAlumno:''  %>" style="display: none;">
+</div>
+<div class="row mt-3">
+    <div class="col d-grid gap-2">
+        <button class="btn btn-outline-dark" type="submit">Guardar</button>
+    </div>
+    <div class="col d-grid gap-2">
+        <a href="/" class="btn btn-outline-dark">Regresar</a>
+    </div>
+</div>
