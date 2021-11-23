@@ -110,15 +110,17 @@ export const guardarProfesor = async (req, res) => {
  * @param {*} res datos de la respuesta
  * @returns {*} retorna una si la operación se realizó con éxito o no
  */
-export const eliminarAlumno = async (req, res) => {
-    const { idAlumno, DNI } = req.body
-    if (!idAlumno) {
+export const eliminarProfesor = async (req, res) => {
+    console.log(req.body);
+    const { idProfesor, DNI } = req.body
+    if (!idProfesor) {
         res.setHeader("Content-Type", "application/json")
         res.statusCode = 501
         res.json({ type: 'error' })
         return
     }
-    cnn.query("DELETE FROM alumnos WHERE idAlumno=?", [idAlumno], async (err, result) => {
+
+    cnn.query("DELETE FROM profesores WHERE idProfesor = ? and DNI = ?", [idProfesor, DNI], async (err, result) => {
         if (err) {
             console.log(err)
             res.setHeader("Content-Type", "application/json")
@@ -126,64 +128,49 @@ export const eliminarAlumno = async (req, res) => {
             res.json({ type: 'error' })
             return
         }
-        try {
-            if (DNI) {
-                unlinkSync(process.cwd() + '/public/users/' + DNI + '.png');
-                console.log('successfully deleted /tmp/hello')
-            }
-        } catch (err) {
-            console.log(err)
-        }
         res.setHeader("Content-Type", "application/json")
         res.statusCode = 200
         res.json({ type: 'success' })
-
     })
 }
 
-export const editarAlumno = async (req, res) => {
+export const editarProfesor = async (req, res) => {
+    console.log(req.body);
     const {
-        alumnoDNI,
-        alumnoNombre,
-        alumnoApellidos,
-        alumnoTelefono,
-        alumnoDireccion,
-        alumnoCorreo,
-        alumnoSexo,
-        idAlumno } = req.body
-    if (!alumnoDNI || !alumnoNombre || !alumnoTelefono || !alumnoApellidos) {
+        profesorDNI,
+        profesorNombre,
+        profesorApellidos,
+        profesorTelefono,
+        profesorDireccion,
+        profesorCorreo,
+        profesorSexo,
+        idProfesor } = req.body
+    if (!profesorDNI || !profesorNombre || !profesorTelefono || !profesorApellidos) {
         res.send("Debe enviar los datos completos")
         return
     }
-    const data = {
-        DNI: alumnoDNI,
-        nombres: alumnoNombre,
-        apellidos: alumnoApellidos,
-        direccion: alumnoDireccion,
-        telefono: alumnoTelefono,
-        sexo: alumnoSexo,
-        email: alumnoCorreo
-    }
-    cnn.query(`UPDATE alumnos SET nombres='${alumnoNombre}', apellidos='${alumnoApellidos}', direccion='${alumnoDireccion}', telefono='${alumnoTelefono}', sexo='${alumnoSexo}', email='${alumnoCorreo}', DNI='${alumnoDNI}' WHERE idAlumno=${idAlumno};`, [data], async (err, result) => {
+    const data = [
+        profesorNombre,
+        profesorApellidos,
+        profesorDireccion,
+        profesorTelefono,
+        profesorSexo,
+        profesorCorreo,
+        profesorDNI,
+        idProfesor
+    ]
+    
+    cnn.query(`UPDATE profesores 
+                SET nombreProfesor= ?, apellidoProfesor= ?,
+                    direccion=?, telefono=?, sexo=?, 
+                    email=?, DNI=? WHERE idProfesor=?;`, data, async (err, result) => {
         if (err) {
             res.send(err)
             return
         }
-        let sampleFile;
-        let uploadPath;
-        if (!req.files || Object.keys(req.files).length === 0) {
-            console.log("No subió ningún archivo")
-            res.redirect("/")
-            return
-        }
-        sampleFile = req.files.sampleFile;
-        sampleFile.name = alumnoDNI + '.png' || "error.png"
-        uploadPath = process.cwd() + '/public/users/' + sampleFile.name;
-        sampleFile.mv(uploadPath, function (err) {
-            if (err)
-                console.log('Ocurrió un error', err)
-            console.log('Archivo subido')
-            res.redirect("/")
-        });
+        
+        console.log('todo bien')
+        res.redirect("/profesores")
+        
     })
 }
