@@ -1,5 +1,5 @@
 import mysql from 'mysql2';
-
+// se realiza su respectica conexion a la base de datos 
 const cnn = mysql.createConnection({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,

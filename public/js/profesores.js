@@ -1,7 +1,7 @@
 /**
- * Función que ejecuta una petición al servidor para eliminar un alumno
- * @param {text} alumnoId Identificador del alumno
- * @param {text} DNI Número de identidad del alumno
+ * Función que ejecuta una petición al servidor para eliminar un profesor
+ * @param {text} idProfesor Identificador del profesor
+ * @param {text} DNI Número de identidad del profesor
  */
  function eliminarProfesor(idProfesor,DNI){
     $.ajax({

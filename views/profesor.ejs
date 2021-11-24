@@ -18,16 +18,18 @@
             <!-- Condicional para definir el contenido de la página
                 según el tipo de acción -->
             <% if (accion === 'nuevo') { %>
-
+            <!-- formulario para poder ingresar un nuevo profesor a la base de datos -->
             <h2 class="mt-3">Nuevo Profesor</h2>
             <form action="/profesor/guardar" method="post" encType="multipart/form-data">
+                <!-- carga la estructura del formulario en formato ejs -->
                 <%- include('./frm-profesor.ejs')  %>
             </form>
 
             <% }else if (accion === 'editar'){%>
-
+            <!-- formulario para poder editar la información de un profesor a la base de datos -->
             <h2 class="mt-3">Editar Profesor</h2>
             <form action="/profesor/editar" method="post" encType="multipart/form-data">
+                <!-- carga la estructura del formulario en formato ejs -->
                 <%- include('./frm-profesor.ejs',{data: data[0]}) %>
             </form>
 
