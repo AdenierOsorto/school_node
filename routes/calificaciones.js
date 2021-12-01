@@ -3,9 +3,6 @@ import { listarClases , listarAlumnosClase, calificacionAlumno, editarcalificaci
 const router = express.Router()
 
 //peticiones get
-router.get('/calificaciones', (req,res)=>{
-    res.render('calificaciones/index')
-})
 router.get('/clasesProfesor', listarClases)
 router.get('/clasesAlumnos/:id', listarAlumnosClase)
 router.get('/calificacionAlumnos/:idA/:idM', calificacionAlumno)

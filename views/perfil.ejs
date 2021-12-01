@@ -11,7 +11,7 @@
     <header>
         <!-- Se incluye el documento parcial donde se almacena la codificacion de 
         la parte del encabezado -->
-        <%- include('./partials/nav.ejs')  %>
+        <%- include('./partials/navLogin.ejs', ({titulo: "Brilliant Minds"}))  %>
     </header>
     <main class="flex-shrink-0">
         <div class="container">
@@ -21,10 +21,11 @@
                         <img id="profileImage" src="/users/<%= data[0].DNI %>.png" class="shadow p-2 mt-3 img-fluid"
                             style="cursor: pointer" onerror="this.src='/users/default.png';" data-id="<%= data[0].DNI %>">
                     </div>
-                    <form action="/perfil/updateImg" id="fmr-img"  method="post" encType="multipart/form-data">
+                    <form action="/alumnos/perfil/updateImg" id="fmr-img"  method="post" encType="multipart/form-data">
                         <input id="imageUpload" type="file" name="profile_photo" placeholder="Photo" required="" capture
                         style="display: none;">
                         <input type="text" name="DNI"style="display: none;" value="<%= data[0].DNI %>">
+                        <input type="text" name="idAlumno"style="display: none;" value="<%= data[0].idAlumno %>">
                     </form>
                 </div>
                 <div class="col-8">

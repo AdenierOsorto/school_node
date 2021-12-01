@@ -49,5 +49,8 @@ export const updateImg = async (req, res) => {
         if (err)
             console.log('Ocurrió un error', err)
         console.log('Archivo subido')
+        
     });
+
+    res.redirect(`/alumnos/perfil?idAlumno=${req.body.idAlumno}`)
 }
