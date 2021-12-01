@@ -7,7 +7,7 @@ import bodyParser from 'body-parser'
 import session from "express-session"
 import cookieParser from "cookie-parser"
 import path from'path'
-import router from './routes/index.js'
+import alumnos from './routes/alumnos.js'
 import login from './routes/login.js'
 import aulas from './routes/aulas.js'
 import profesores from './routes/profesores.js'
@@ -38,8 +38,8 @@ app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 app.use('/', express.static(__dirname + '/public'));
 
-app.use('/alumnos',router)
 app.use('/',login)
+app.use('/alumnos',alumnos)
 app.use('/',horario)
 app.use('/',matricula)
 app.use('/',calificaciones)
