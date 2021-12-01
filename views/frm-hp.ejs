@@ -1,0 +1,78 @@
+<div class="row mt-3">
+    <div class="col">
+        <label for="idAula" class="form-label">Aulas</label>
+        <select name="idAula" id="idAula" class="form-select" required>
+            <option value="" disabled>Seleccione una aula</option>
+            <% data.aulas.forEach(function(data) {%>
+            <option value="<%= typeof data.idAula != 'undefined' ? data.idAula :'error'  %>">
+                <%= typeof data.nombreAula != 'undefined' ? data.nombreAula :'error'  %>
+            </option>
+            <% }); %>
+        </select>
+    </div>
+    <div class="col">
+        <label for="idMateria" class="form-label">Materias</label>
+        <select name="idMateria" id="idMateria" class="form-select" required>
+            <option value="" selected disabled>Seleccione una materia</option>
+            <% data.materia.forEach(function(data) {%>
+            <option value="<%= typeof data.idMateria != 'undefined' ? data.idMateria :'error'  %>">
+                <%= typeof data.nombreMateria != 'undefined' ? data.nombreMateria :'error'  %>
+            </option>
+            <% }); %>
+        </select>
+    </div>
+    <div class="col">
+        <label for="idProfesor" class="form-label">Profesores</label>
+        <select name="idProfesor" id="idProfesor" class="form-select" required>
+            <option value="" selected disabled>Seleccione un profesor</option>
+            <% data.profesores.forEach(function(data) {%>
+            <option value="<%= typeof data.idProfesor != 'undefined' ? data.idProfesor :'error'  %>">
+                <%= typeof data.nombreProfesor != 'undefined' ? (data.nombreProfesor +' '+data.apellidoProfesor) :'error'  %>
+            </option>
+            <% }); %>
+        </select>
+    </div>
+</div>
+<div class="row mt-3">
+    <label class="form-label">Días</label>
+    <div class="col-4">
+        <div class="row">
+            <div class="col">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="swlunes" data-dia="lunes" name="lunes" >
+                    <label class="form-check-label" for="swlunes">Lunes</label>
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="swmartes" data-dia="martes" name="martes" >
+                    <label class="form-check-label" for="swmartes">Martes</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="swmiercoles" data-dia="miercoles" name="miercoles" >
+                    <label class="form-check-label" for="swmiercoles">Miercoles</label>
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="swjueves" data-dia="jueves" name="jueves" >
+                    <label class="form-check-label" for="swjueves">Jueves</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="viernes" data-dia="viernes" name="viernes" >
+                    <label class="form-check-label" for="viernes">Viernes</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<div class="row mt-3" id="frm-container"></div>
+<div class="row mt-3">
+    <div class="col d-grid gap-2">
+        <button class="btn btn-outline-dark" type="submit">Guardar</button>
+    </div>
+    <div class="col d-grid gap-2">
+        <a href="/hp" class="btn btn-outline-dark">Regresar</a>
+    </div>
+</div>

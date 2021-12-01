@@ -1,0 +1,19 @@
+<div class="row mt-3">
+    <div class="col">
+        <label for="aulanombre" class="form-label">Nombre Aula</label>
+        <input type="text" name="aulanombre" id="aulanombre" class="form-control" required value="<%= typeof data.nombreAula != 'undefined' ? data.nombreAula:''  %>">
+    </div>
+    <div class="col">
+        <label for="aulaedificio" class="form-label">Edificio Aula</label>
+        <input type="text" name="aulaedificio" id="aulaedificio" class="form-control" required value="<%= typeof data.edificioAula != 'undefined' ? data.edificioAula:''  %>">
+    </div>
+    <input type="text" name="idAula" id="idAula" value="<%= typeof data.idAula != 'undefined' ? data.idAula:''  %>" style="display: none;">
+</div>
+<div class="row mt-3">
+    <div class="col d-grid gap-2">
+        <button class="btn btn-outline-dark" type="submit">Guardar</button>
+    </div>
+    <div class="col d-grid gap-2">
+        <a href="/aulas" class="btn btn-outline-dark ">Regresar</a>
+    </div>
+</div>

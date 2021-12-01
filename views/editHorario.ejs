@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="es" class="h-100">
+
+<head>
+    <!-- Se incluye el documento parcial donde se almacena la codificacion de 
+    la parte del head -->
+    <%- include('../partials/head.ejs',{titulo: "Editar Horario"})  %>
+</head>
+
+<body class="d-flex flex-column h-100">
+    <header>
+        <!-- Se incluye el documento parcial donde se almacena la codificacion de 
+        la parte del encabezado -->
+        <%- include('../partials/nav.ejs')  %>
+    </header>
+    <main class="flex-shrink-0">
+        <div class="container">
+            <h2 class="mt-3">Editar Horario</h2>
+            <form action="editHorario" method="post">
+
+                <!-- Datos necesarios para agregar el horario-->
+                <div class="row" style="margin-top: 20px;">
+                    <div class="col-6">
+                        <label for="descripcionHorario" class="form-label">Descripción</label>
+                        <input style="display: none;" value="<%= dataHorario[0].idHorario%>" type="text" class="form-control" id="idHorario" name="idHorario">
+                        <input type="text" class="form-control" id="descripcionHorario" value="<%= dataHorario[0].descripcion %>" name="descripcionHorario">
+                    </div>
+                    <div class="col-6">
+                        <label for="Aula" class="form-label">Aulas</label>
+                        <select name="idAula" class="form-select" aria-label="Default select example">
+                            <option value="<%= dataHorario[0].idAula %>" selected><%= dataHorario[0].nombreAula %></option>
+                        <% dataAulas.forEach(function(dataAulas) {
+                            if (dataAulas.idAula!=dataHorario[0].idAula) { 
+                            %>
+                                <option value="<%=dataAulas.idAula%>"><%=dataAulas.nombreAula%></option>
+                        <% }}) %>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top: 20px;">
+                    <div class="col-6">
+                        <label for="jornada" class="form-label">Jornada</label>
+                        <select name="jornada" class="form-select" aria-label="Default select example">
+                            <% if (dataHorario[0].horaInicio<="12:00:00") {%>
+                                <option value="1" selected>Matutina</option>
+                                <option value="2">Vespertina</option>
+                            <%}else{%>
+                                <option value="2" selected>Vespertina</option>
+                                <option value="1">Matutina</option>
+                            <%}%>
+                        </select>
+                    </div>
+                </div>
+
+                <hr>
+
+                <!--=============================================================================================================-->
+                <!--Formularios de los horarios-->
+                <div class="row">
+                    <div class="col" style="background-color: #1d577a;color: white;">
+                        <!--=============================================================================================================-->
+                        <!--Formulario del dia Lunes-->
+                        <div style="text-align: center;">
+                            <h2>Lunes</h2>
+                        </div>
+                        <div class="row" style="margin-bottom: 20px;">
+                            <!--===========================================================================================--> 
+                            <!--Select Materias--> 
+                            <div class="col">
+                                <label for="lClase1" class="form-label">Materia</label>
+                                <input style="display: none;" value="<%= dataHorario[5].idDetalleHorario%>" type="text" class="form-control" id="lIdRecreo" name="lIdRecreo">
+                                <input style="display: none;" value="<%= dataHorario[6].idDetalleHorario%>" type="text" class="form-control" id="lIdDetalle1" name="lIdDetalle1">
+                                <select name="lIdMateria1" class="form-select" aria-label="Default select example">
+                                    <option value="<%=dataHorario[6].idMateria %>" selected><%=dataHorario[6].nombreMateria %></option>
+                                <% dataMaterias.forEach(function(dataMaterias) { 
+                                    if (dataMaterias.idMateria!=dataHorario[6].idMateria && dataMaterias.idMateria!=1) {%>
+                                        <option value="<%=dataMaterias.idMateria%>"><%=dataMaterias.nombreMateria%></option>
+                                <% }}) %>
+                                </select>
+                                <hr>
+
+                                <input style="display: none;" value="<%= dataHorario[7].idDetalleHorario%>" type="text" class="form-control" id="lIdDetalle2" name="lIdDetalle2">
+                                <select name="lIdMateria2" class="form-select" aria-label="Default select example">
+                                    <option value="<%=dataHorario[7].idMateria %>" selected><%=dataHorario[7].nombreMateria %></option>
+                                <% dataMaterias.forEach(function(dataMaterias) { 
+                                    if (dataMaterias.idMateria!=dataHorario[7].idMateria && dataMaterias.idMateria!=1) {%>
+                                        <option value="<%=dataMaterias.idMateria%>"><%=dataMaterias.nombreMateria%></option>
+                                <% }}) %>
+                                </select>
+                                <hr>
+                                <p style="text-align: center;">Recreo</p>
+                                <hr>
+
+                                <input style="display: none;" value="<%= dataHorario[8].idDetalleHorario%>" type="text" class="form-control" id="lIdDetalle3" name="lIdDetalle3">
+                                <select name="lIdMateria3" class="form-select" aria-label="Default select example">
+                                    <option value="<%=dataHorario[8].idMateria %>" selected><%=dataHorario[8].nombreMateria %></option>
+                                <% dataMaterias.forEach(function(dataMaterias) { 
+                                    if (dataMaterias.idMateria!=dataHorario[8].idMateria && dataMaterias.idMateria!=1) {%>
+                                        <option value="<%=dataMaterias.idMateria%>"><%=dataMaterias.nombreMateria%></option>
+                                <% }}) %>
+                                </select>
+                                <hr>
+
+                                <input style="display: none;" value="<%= dataHorario[9].idDetalleHorario%>" type="text" class="form-control" id="lIdDetalle4" name="lIdDetalle4">
+                                <select name="lIdMateria4" class="form-select" aria-label="Default select example">
+                                    <option value="<%=dataHorario[9].idMateria %>" selected><%=dataHorario[9].nombreMateria %></option>
+                                <% dataMaterias.forEach(function(dataMaterias) { 
+                                    if (dataMaterias.idMateria!=dataHorario[9].idMateria && dataMaterias.idMateria!=1) {%>
+                                        <option value="<%=dataMaterias.idMateria%>"><%=dataMaterias.nombreMateria%></option>
+                                <% }}) %>
+                                </select>
+                            </div>
+
+                            <!--===========================================================================================--> 
+                            <!--Select Profesores--> 
+                            <div class="col">
+                                <label for="Profesor" class="form-label">Profesores</label>
+                                <select name="lIdProfesor1" class="form-select" aria-label="Default select example">
+                                    <option value="<%=dataHorario[6].idProfesor %>" selected><%=dataHorario[6].profesor %></option>
+                                <% dataProfesores.forEach(function(dataProfesores) { 
+                                    if (dataProfesores.idProfesor!=dataHorario[6].idProfesor && dataProfesores.idProfesor!=1) {%>
+                                        <option value="<%=dataProfesores.idProfesor%>"><%=dataProfesores.nombreProfesor%> <%=dataProfesores.apellidoProfesor%></option>
+                                <% }}) %>
+                                </select>
+                                <hr>
+
+                                <select name="lIdProfesor2" class="form-select" aria-label="Default select example">
+                                    <option value="<%=dataHorario[7].idProfesor %>" selected><%=dataHorario[7].profesor %></option>
+                                <% dataProfesores.forEach(function(dataProfesores) { 
+                                    if (dataProfesores.idProfesor!=dataHorario[7].idProfesor && dataProfesores.idProfesor!=1) {%>
+                                        <option value="<%=dataProfesores.idProfesor%>"><%=dataProfesores.nombreProfesor%> <%=dataProfesores.apellidoProfesor%></option>
+                                <% }}) %>
+                                </select>
+                                <hr>
+                                <p style="text-align: center;">Recreo</p>
+                                <hr>
+
+                                <select name="lIdProfesor3" class="form-select" aria-label="Default select example">
+                                    <option value="<%=dataHorario[8].idProfesor %>" selected><%=dataHorario[8].profesor %></option>
+                                <% dataProfesores.forEach(function(dataProfesores) { 
+                                    if (dataProfesores.idProfesor!=dataHorario[8].idProfesor && dataProfesores.idProfesor!=1) {%>
+                                        <option value="<%=dataProfesores.idProfesor%>"><%=dataProfesores.nombreProfesor%> <%=dataProfesores.apellidoProfesor%></option>
+                                <% }}) %>
+                                </select>
+                                <hr>
+
+                                <select name="lIdProfesor4" class="form-select" aria-label="Default select example">
+                                    <option value="<%=dataHorario[9].idProfesor %>" selected><%=dataHorario[9].profesor %></option>
+                                <% dataProfesores.forEach(function(dataProfesores) { 
+                                    if (dataProfesores.idProfesor!=dataHorario[9].idProfesor && dataProfesores.idProfesor!=1) {%>
+                                        <option value="<%=dataProfesores.idProfesor%>"><%=dataProfesores.nombreProfesor%> <%=dataProfesores.apellidoProfesor%></option>
+                                <% }}) %>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Divición para apariencia-->
+                    <div class="col-1"></div>
+
+                    <div class="col" style="background-color: #1d577a;color: white;">
+                        <!--=============================================================================================================-->
+                        <!--Formulario del dia Martes-->
+                        <div style="text-align: center;">
+                            <h2>Martes</h2>
+                        </div>
+                        <div class="row" style="margin-bottom: 20px;">
+                            <!--===========================================================================================--> 
+                            <!--Select Materias--> 
+                            <div class="col" >
+                                <label for="mClase1" class="form-label">Materia</label>
+                                <input style="display: none;" value="<%= dataHorario[10].idDetalleHorario%>" type="text" class="form-control" id="mIdRecreo" name="mIdRecreo">
+                                <input style="display: none;" value="<%= dataHorario[11].idDetalleHorario%>" type="text" class="form-control" id="mIdDetalle1" name="mIdDetalle1">
+                                <select name="mIdMateria1" class="form-select" aria-label="Default select example">
+                                    <option value="<%=dataHorario[11].idMateria %>" selected><%=dataHorario[11].nombreMateria %></option>
+                                <% dataMaterias.forEach(function(dataMaterias) { 
+                                    if (dataMaterias.idMateria!=dataHorario[11].idMateria && dataMaterias.idMateria!=1) {%>
+                                        <option value="<%=dataMaterias.idMateria%>"><%=dataMaterias.nombreMateria%></option>
+                                <% }}) %>
+                                </select>
+                                <hr>
+
+                                <input style="display: none;" value="<%= dataHorario[12].idDetalleHorario%>" type="text" class="form-control" id="mIdDetalle2" name="mIdDetalle2">
+                                <select name="mIdMateria2" class="form-select" aria-label="Default select example">
+                                    <option value="<%=dataHorario[12].idMateria %>" selected><%=dataHorario[12].nombreMateria %></option>
+                                <% dataMaterias.forEach(function(dataMaterias) { 
+                                    if (dataMaterias.idMateria!=dataHorario[12].idMateria && dataMaterias.idMateria!=1) {%>
+                                        <option value="<%=dataMaterias.idMateria%>"><%=dataMaterias.nombreMateria%></option>
+                                <% }}) %>
+                                </select>
+                                <hr>
+                                <p style="text-align: center;">Recreo</p>
+                                <hr>
+
+                                <input style="display: none;" value="<%= dataHorario[13].idDetalleHorario%>" type="text" class="form-control" id="mIdDetalle3" name="mIdDetalle3">
+                                <select name="mIdMateria3" class="form-select" aria-label="Default select example">
+                                    <option value="<%=dataHorario[13].idMateria %>" selected><%=dataHorario[13].nombreMateria %></option>
+                                <% dataMaterias.forEach(function(dataMaterias) { 
+                                    if (dataMaterias.idMateria!=dataHorario[13].idMateria && dataMaterias.idMateria!=1) {%>
+                                        <option value="<%=dataMaterias.idMateria%>"><%=dataMaterias.nombreMateria%></option>
+                                <% }}) %>
+                                </select>
+                                <hr>
+
+                                <input style="display: none;" value="<%= dataHorario[14].idDetalleHorario%>" type="text" class="form-control" id="mIdDetalle4" name="mIdDetalle4">
+                                <select name="mIdMateria4" class="form-select" aria-label="Default select example">
+                                    <option value="<%=dataHorario[14].idMateria %>" selected><%=dataHorario[14].nombreMateria %></option>
+                                <% dataMaterias.forEach(function(dataMaterias) { 
+                                    if (dataMaterias.idMateria!=dataHorario[14].idMateria && dataMaterias.idMateria!=1) {%>
+                                        <option value="<%=dataMaterias.idMateria%>"><%=dataMaterias.nombreMateria%></option>
+                                <% }}) %>
+                                </select>
+                            </div>
+
+                            <!--===========================================================================================--> 
+                            <!--Select Profesores--> 
+                            <div class="col">
+                                <label for="Profesor" class="form-label">Profesores</label>
+                                <select name="mIdProfesor1" class="form-select" aria-label="Default select example">
+                                    <option value="<%=dataHorario[11].idProfesor %>" selected><%=dataHorario[11].profesor %></option>
+                                <% dataProfesores.forEach(function(dataProfesores) { 
+                                    if (dataProfesores.idProfesor!=dataHorario[11].idProfesor && dataProfesores.idProfesor!=1) {%>
+                                        <option value="<%=dataProfesores.idProfesor%>"><%=dataProfesores.nombreProfesor%> <%=dataProfesores.apellidoProfesor%></option>
+                                <% }}) %>
+                                </select>
+                                <hr>
+
+                                <select name="mIdProfesor2" class="form-select" aria-label="Default select example">
+                                    <option value="<%=dataHorario[12].idProfesor %>" selected><%=dataHorario[12].profesor %></option>
+                                <% dataProfesores.forEach(function(dataProfesores) { 
+                                    if (dataProfesores.idProfesor!=dataHorario[12].idProfesor && dataProfesores.idProfesor!=1) {%>
+                                        <option value="<%=dataProfesores.idProfesor%>"><%=dataProfesores.nombreProfesor%> <%=dataProfesores.apellidoProfesor%></option>
+                                <% }}) %>
+                                </select>
+                                <hr>
+                                <p style="text-align: center;">Recreo</p>
+                                <hr>
+
+                                <select name="mIdProfesor3" class="form-select" aria-label="Default select example">
+                                    <option value="<%=dataHorario[13].idProfesor %>" selected><%=dataHorario[13].profesor %></option>
+                                <% dataProfesores.forEach(function(dataProfesores) { 
+                                    if (dataProfesores.idProfesor!=dataHorario[13].idProfesor && dataProfesores.idProfesor!=1) {%>
+                                        <option value="<%=dataProfesores.idProfesor%>"><%=dataProfesores.nombreProfesor%> <%=dataProfesores.apellidoProfesor%></option>
+                                <% }}) %>
+                                </select>
+                                <hr>
+
+                                <select name="mIdProfesor4" class="form-select" aria-label="Default select example">
+                                    <option value="<%=dataHorario[14].idProfesor %>" selected><%=dataHorario[14].profesor %></option>
+                                <% dataProfesores.forEach(function(dataProfesores) { 
+                                    if (dataProfesores.idProfesor!=dataHorario[14].idProfesor && dataProfesores.idProfesor!=1) {%>
+                                        <option value="<%=dataProfesores.idProfesor%>"><%=dataProfesores.nombreProfesor%> <%=dataProfesores.apellidoProfesor%></option>
+                                <% }}) %>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+                <div class="row">
+                    <div class="col" style="background-color: #1d577a;color: white;">
+                        <!--=============================================================================================================-->
+                        <!--Formulario del dia Miercoles-->
+                        <div style="text-align: center;">
+                            <h2>Miercoles</h2>
+                        </div>
+                        <div class="row" style="margin-bottom: 20px;">
+                            <!--===========================================================================================--> 
+                            <!--Select Materias--> 
+                            <div class="col">
+                                <label for="miClase1" class="form-label">Materia</label>
+                                <input style="display: none;" value="<%= dataHorario[15].idDetalleHorario%>" type="text" class="form-control" id="miIdRecreo" name="miIdRecreo">
+                                <input style="display: none;" value="<%= dataHorario[16].idDetalleHorario%>" type="text" class="form-control" id="miIdDetalle1" name="miIdDetalle1">
+                                <select name="miIdMateria1" class="form-select" aria-label="Default select example">
+                                    <option value="<%=dataHorario[16].idMateria %>" selected><%=dataHorario[16].nombreMateria %></option>
+                                <% dataMaterias.forEach(function(dataMaterias) { 
+                                    if (dataMaterias.idMateria!=dataHorario[16].idMateria && dataMaterias.idMateria!=1) {%>
+                                        <option value="<%=dataMaterias.idMateria%>"><%=dataMaterias.nombreMateria%></option>
+                                <% }}) %>
+                                </select>
+                                <hr>
+
+                                <input style="display: none;" value="<%= dataHorario[17].idDetalleHorario%>" type="text" class="form-control" id="miIdDetalle2" name="miIdDetalle2">
+                                <select name="miIdMateria2" class="form-select" aria-label="Default select example">
+                                    <option value="<%=dataHorario[17].idMateria %>" selected><%=dataHorario[17].nombreMateria %></option>
+                                <% dataMaterias.forEach(function(dataMaterias) { 
+                                    if (dataMaterias.idMateria!=dataHorario[17].idMateria && dataMaterias.idMateria!=1) {%>
+                                        <option value="<%=dataMaterias.idMateria%>"><%=dataMaterias.nombreMateria%></option>
+                                <% }}) %>
+                                </select>
+                                <hr>
+                                <p style="text-align: center;">Recreo</p>
+                                <hr>
+
+                                <input style="display: none;" value="<%= dataHorario[18].idDetalleHorario%>" type="text" class="form-control" id="miIdDetalle3" name="miIdDetalle3">
+                                <select name="miIdMateria3" class="form-select" aria-label="Default select example">
+                                    <option value="<%=dataHorario[18].idMateria %>" selected><%=dataHorario[18].nombreMateria %></option>
+                                <% dataMaterias.forEach(function(dataMaterias) { 
+                                    if (dataMaterias.idMateria!=dataHorario[18].idMateria && dataMaterias.idMateria!=1) {%>
+                                        <option value="<%=dataMaterias.idMateria%>"><%=dataMaterias.nombreMateria%></option>
+                                <% }}) %>
+                                </select>
+                                <hr>
+
+                                <input style="display: none;" value="<%= dataHorario[19].idDetalleHorario%>" type="text" class="form-control" id="miIdDetalle4" name="miIdDetalle4">
+                                <select name="miIdMateria4" class="form-select" aria-label="Default select example">
+                                    <option value="<%=dataHorario[19].idMateria %>" selected><%=dataHorario[19].nombreMateria %></option>
+                                <% dataMaterias.forEach(function(dataMaterias) { 
+                                    if (dataMaterias.idMateria!=dataHorario[19].idMateria && dataMaterias.idMateria!=1) {%>
+                                        <option value="<%=dataMaterias.idMateria%>"><%=dataMaterias.nombreMateria%></option>
+                                <% }}) %>
+                                </select>
+                            </div>
+
+                            <!--===========================================================================================--> 
+                            <!--Select Profesores--> 
+                            <div class="col">
+                                <label for="Profesor" class="form-label">Profesores</label>
+                                <select name="miIdProfesor1" class="form-select" aria-label="Default select example">
+                                    <option value="<%=dataHorario[16].idProfesor %>" selected><%=dataHorario[16].profesor %></option>
+                                <% dataProfesores.forEach(function(dataProfesores) { 
+                                    if (dataProfesores.idProfesor!=dataHorario[16].idProfesor && dataProfesores.idProfesor!=1) {%>
+                                        <option value="<%=dataProfesores.idProfesor%>"><%=dataProfesores.nombreProfesor%> <%=dataProfesores.apellidoProfesor%></option>
+                                <% }}) %>
+                                </select>
+                                <hr>
+
+                                <select name="miIdProfesor2" class="form-select" aria-label="Default select example">
+                                    <option value="<%=dataHorario[17].idProfesor %>" selected><%=dataHorario[17].profesor %></option>
+                                <% dataProfesores.forEach(function(dataProfesores) { 
+                                    if (dataProfesores.idProfesor!=dataHorario[17].idProfesor && dataProfesores.idProfesor!=1) {%>
+                                        <option value="<%=dataProfesores.idProfesor%>"><%=dataProfesores.nombreProfesor%> <%=dataProfesores.apellidoProfesor%></option>
+                                <% }}) %>
+                                </select>
+                                <hr>
+                                <p style="text-align: center;">Recreo</p>
+                                <hr>
+
+                                <select name="miIdProfesor3" class="form-select" aria-label="Default select example">
+                                    <option value="<%=dataHorario[18].idProfesor %>" selected><%=dataHorario[18].profesor %></option>
+                                <% dataProfesores.forEach(function(dataProfesores) { 
+                                    if (dataProfesores.idProfesor!=dataHorario[18].idProfesor && dataProfesores.idProfesor!=1) {%>
+                                        <option value="<%=dataProfesores.idProfesor%>"><%=dataProfesores.nombreProfesor%> <%=dataProfesores.apellidoProfesor%></option>
+                                <% }}) %>
+                                </select>
+                                <hr>
+
+                                <select name="miIdProfesor4" class="form-select" aria-label="Default select example">
+                                    <option value="<%=dataHorario[19].idProfesor %>" selected><%=dataHorario[19].profesor %></option>
+                                <% dataProfesores.forEach(function(dataProfesores) { 
+                                    if (dataProfesores.idProfesor!=dataHorario[19].idProfesor && dataProfesores.idProfesor!=1) {%>
+                                        <option value="<%=dataProfesores.idProfesor%>"><%=dataProfesores.nombreProfesor%> <%=dataProfesores.apellidoProfesor%></option>
+                                <% }}) %>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Divición para apariencia-->
+                    <div class="col-1"></div>
+
+                    <div class="col" style="background-color: #1d577a;color: white;">
+                        <!--=============================================================================================================-->
+                        <!--Formulario del dia Jueves-->
+                        <div style="text-align: center;">
+                            <h2>Jueves</h2>
+                        </div>
+                        <div class="row" style="margin-bottom: 20px;">
+                            <!--===========================================================================================--> 
+                            <!--Select Materias--> 
+                            <div class="col">
+                                <label for="jClase1" class="form-label">Materia</label>
+                                <input style="display: none;" value="<%= dataHorario[0].idDetalleHorario%>" type="text" class="form-control" id="jIdRecreo" name="jIdRecreo">
+                                <input style="display: none;" value="<%= dataHorario[1].idDetalleHorario%>" type="text" class="form-control" id="jIdDetalle1" name="jIdDetalle1">
+                                <select name="jIdMateria1" class="form-select" aria-label="Default select example">
+                                    <option value="<%=dataHorario[1].idMateria %>" selected><%=dataHorario[1].nombreMateria %></option>
+                                <% dataMaterias.forEach(function(dataMaterias) { 
+                                    if (dataMaterias.idMateria!=dataHorario[1].idMateria && dataMaterias.idMateria!=1) {%>
+                                        <option value="<%=dataMaterias.idMateria%>"><%=dataMaterias.nombreMateria%></option>
+                                <% }}) %>
+                                </select>
+                                <hr>
+
+                                <input style="display: none;" value="<%= dataHorario[2].idDetalleHorario%>" type="text" class="form-control" id="jIdDetalle2" name="jIdDetalle2">
+                                <select name="jIdMateria2" class="form-select" aria-label="Default select example">
+                                    <option value="<%=dataHorario[2].idMateria %>" selected><%=dataHorario[2].nombreMateria %></option>
+                                <% dataMaterias.forEach(function(dataMaterias) { 
+                                    if (dataMaterias.idMateria!=dataHorario[2].idMateria && dataMaterias.idMateria!=1) {%>
+                                        <option value="<%=dataMaterias.idMateria%>"><%=dataMaterias.nombreMateria%></option>
+                                <% }}) %>
+                                </select>
+                                <hr>
+                                <p style="text-align: center;">Recreo</p>
+                                <hr>
+
+                                <input style="display: none;" value="<%= dataHorario[3].idDetalleHorario%>" type="text" class="form-control" id="jIdDetalle3" name="jIdDetalle3">
+                                <select name="jIdMateria3" class="form-select" aria-label="Default select example">
+                                    <option value="<%=dataHorario[3].idMateria %>" selected><%=dataHorario[3].nombreMateria %></option>
+                                <% dataMaterias.forEach(function(dataMaterias) { 
+                                    if (dataMaterias.idMateria!=dataHorario[3].idMateria && dataMaterias.idMateria!=1) {%>
+                                        <option value="<%=dataMaterias.idMateria%>"><%=dataMaterias.nombreMateria%></option>
+                                <% }}) %>
+                                </select>
+                                <hr>
+
+                                <input style="display: none;" value="<%= dataHorario[4].idDetalleHorario%>" type="text" class="form-control" id="jIdDetalle4" name="jIdDetalle4">
+                                <select name="jIdMateria4" class="form-select" aria-label="Default select example">
+                                    <option value="<%=dataHorario[4].idMateria %>" selected><%=dataHorario[4].nombreMateria %></option>
+                                <% dataMaterias.forEach(function(dataMaterias) { 
+                                    if (dataMaterias.idMateria!=dataHorario[4].idMateria && dataMaterias.idMateria!=1) {%>
+                                        <option value="<%=dataMaterias.idMateria%>"><%=dataMaterias.nombreMateria%></option>
+                                <% }}) %>
+                                </select>
+                            </div>
+
+                            <!--===========================================================================================--> 
+                            <!--Select Profesores--> 
+                            <div class="col">
+                                <label for="Profesor" class="form-label">Profesores</label>
+                                <select name="jIdProfesor1" class="form-select" aria-label="Default select example">
+                                    <option value="<%=dataHorario[1].idProfesor %>" selected><%=dataHorario[1].profesor %></option>
+                                <% dataProfesores.forEach(function(dataProfesores) { 
+                                    if (dataProfesores.idProfesor!=dataHorario[1].idProfesor && dataProfesores.idProfesor!=1) {%>
+                                        <option value="<%=dataProfesores.idProfesor%>"><%=dataProfesores.nombreProfesor%> <%=dataProfesores.apellidoProfesor%></option>
+                                <% }}) %>
+                                </select>
+                                <hr>
+
+                                <select name="jIdProfesor2" class="form-select" aria-label="Default select example">
+                                    <option value="<%=dataHorario[2].idProfesor %>" selected><%=dataHorario[2].profesor %></option>
+                                <% dataProfesores.forEach(function(dataProfesores) { 
+                                    if (dataProfesores.idProfesor!=dataHorario[2].idProfesor && dataProfesores.idProfesor!=1) {%>
+                                        <option value="<%=dataProfesores.idProfesor%>"><%=dataProfesores.nombreProfesor%> <%=dataProfesores.apellidoProfesor%></option>
+                                <% }}) %>
+                                </select>
+                                <hr>
+                                <p style="text-align: center;">Recreo</p>
+                                <hr>
+
+                                <select name="jIdProfesor3" class="form-select" aria-label="Default select example">
+                                    <option value="<%=dataHorario[3].idProfesor %>" selected><%=dataHorario[3].profesor %></option>
+                                <% dataProfesores.forEach(function(dataProfesores) { 
+                                    if (dataProfesores.idProfesor!=dataHorario[3].idProfesor && dataProfesores.idProfesor!=1) {%>
+                                        <option value="<%=dataProfesores.idProfesor%>"><%=dataProfesores.nombreProfesor%> <%=dataProfesores.apellidoProfesor%></option>
+                                <% }}) %>
+                                </select>
+                                <hr>
+
+                                <select name="jIdProfesor4" class="form-select" aria-label="Default select example">
+                                    <option value="<%=dataHorario[4].idProfesor %>" selected><%=dataHorario[4].profesor %></option>
+                                <% dataProfesores.forEach(function(dataProfesores) { 
+                                    if (dataProfesores.idProfesor!=dataHorario[4].idProfesor && dataProfesores.idProfesor!=1) {%>
+                                        <option value="<%=dataProfesores.idProfesor%>"><%=dataProfesores.nombreProfesor%> <%=dataProfesores.apellidoProfesor%></option>
+                                <% }}) %>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+                <div class="row">
+                    <!-- Divición para apariencia-->
+                    <div class="col"></div>
+
+                    <div class="col-5" style="background-color: #1d577a;color: white;">
+                        <!--=============================================================================================================-->
+                        <!--Formulario del dia Viernes-->
+                        <div style="text-align: center;">
+                            <h2>Viernes</h2>
+                        </div>
+                        <div class="row" style="margin-bottom: 20px;">
+                            <!--===========================================================================================--> 
+                            <!--Select Materias--> 
+                            <div class="col">
+                                <label for="vClase1" class="form-label">Materia</label>
+                                <input style="display: none;" value="<%= dataHorario[20].idDetalleHorario%>" type="text" class="form-control" id="vIdRecreo" name="vIdRecreo">
+                                <input style="display: none;" value="<%= dataHorario[21].idDetalleHorario%>" type="text" class="form-control" id="vIdDetalle1" name="vIdDetalle1">
+                                <select name="vIdMateria1" class="form-select" aria-label="Default select example">
+                                    <option value="<%=dataHorario[21].idMateria %>" selected><%=dataHorario[21].nombreMateria %></option>
+                                <% dataMaterias.forEach(function(dataMaterias) { 
+                                    if (dataMaterias.idMateria!=dataHorario[21].idMateria && dataMaterias.idMateria!=1) {%>
+                                        <option value="<%=dataMaterias.idMateria%>"><%=dataMaterias.nombreMateria%></option>
+                                <% }}) %>
+                                </select>
+                                <hr>
+
+                                <input style="display: none;" value="<%= dataHorario[22].idDetalleHorario%>" type="text" class="form-control" id="vIdDetalle2" name="vIdDetalle2">
+                                <select name="vIdMateria2" class="form-select" aria-label="Default select example">
+                                    <option value="<%=dataHorario[22].idMateria %>" selected><%=dataHorario[22].nombreMateria %></option>
+                                <% dataMaterias.forEach(function(dataMaterias) { 
+                                    if (dataMaterias.idMateria!=dataHorario[22].idMateria && dataMaterias.idMateria!=1) {%>
+                                        <option value="<%=dataMaterias.idMateria%>"><%=dataMaterias.nombreMateria%></option>
+                                <% }}) %>
+                                </select>
+                                <hr>
+                                <p style="text-align: center;">Recreo</p>
+                                <hr>
+
+                                <input style="display: none;" value="<%= dataHorario[23].idDetalleHorario%>" type="text" class="form-control" id="vIdDetalle3" name="vIdDetalle3">
+                                <select name="vIdMateria3" class="form-select" aria-label="Default select example">
+                                    <option value="<%=dataHorario[23].idMateria %>" selected><%=dataHorario[23].nombreMateria %></option>
+                                <% dataMaterias.forEach(function(dataMaterias) { 
+                                    if (dataMaterias.idMateria!=dataHorario[23].idMateria && dataMaterias.idMateria!=1) {%>
+                                        <option value="<%=dataMaterias.idMateria%>"><%=dataMaterias.nombreMateria%></option>
+                                <% }}) %>
+                                </select>
+                                <hr>
+
+                                <input style="display: none;" value="<%= dataHorario[24].idDetalleHorario%>" type="text" class="form-control" id="vIdDetalle4" name="vIdDetalle4">
+                                <select name="vIdMateria4" class="form-select" aria-label="Default select example">
+                                    <option value="<%=dataHorario[24].idMateria %>" selected><%=dataHorario[24].nombreMateria %></option>
+                                <% dataMaterias.forEach(function(dataMaterias) { 
+                                    if (dataMaterias.idMateria!=dataHorario[24].idMateria && dataMaterias.idMateria!=1) {%>
+                                        <option value="<%=dataMaterias.idMateria%>"><%=dataMaterias.nombreMateria%></option>
+                                <% }}) %>
+                                </select>
+                            </div>
+
+                            <!--===========================================================================================--> 
+                            <!--Select Profesores--> 
+                            <div class="col">
+                                <label for="Profesor" class="form-label">Profesores</label>
+                                <select name="vIdProfesor1" class="form-select" aria-label="Default select example">
+                                    <option value="<%=dataHorario[21].idProfesor %>" selected><%=dataHorario[21].profesor %></option>
+                                <% dataProfesores.forEach(function(dataProfesores) { 
+                                    if (dataProfesores.idProfesor!=dataHorario[21].idProfesor && dataProfesores.idProfesor!=1) {%>
+                                        <option value="<%=dataProfesores.idProfesor%>"><%=dataProfesores.nombreProfesor%> <%=dataProfesores.apellidoProfesor%></option>
+                                <% }}) %>
+                                </select>
+                                <hr>
+
+                                <select name="vIdProfesor2" class="form-select" aria-label="Default select example">
+                                    <option value="<%=dataHorario[22].idProfesor %>" selected><%=dataHorario[22].profesor %></option>
+                                <% dataProfesores.forEach(function(dataProfesores) { 
+                                    if (dataProfesores.idProfesor!=dataHorario[22].idProfesor && dataProfesores.idProfesor!=1) {%>
+                                        <option value="<%=dataProfesores.idProfesor%>"><%=dataProfesores.nombreProfesor%> <%=dataProfesores.apellidoProfesor%></option>
+                                <% }}) %>
+                                </select>
+                                <hr>
+                                <p style="text-align: center;">Recreo</p>
+                                <hr>
+
+                                <select name="vIdProfesor3" class="form-select" aria-label="Default select example">
+                                    <option value="<%=dataHorario[23].idProfesor %>" selected><%=dataHorario[23].profesor %></option>
+                                <% dataProfesores.forEach(function(dataProfesores) { 
+                                    if (dataProfesores.idProfesor!=dataHorario[23].idProfesor && dataProfesores.idProfesor!=1) {%>
+                                        <option value="<%=dataProfesores.idProfesor%>"><%=dataProfesores.nombreProfesor%> <%=dataProfesores.apellidoProfesor%></option>
+                                <% }}) %>
+                                </select>
+                                <hr>
+
+                                <select name="vIdProfesor4" class="form-select" aria-label="Default select example">
+                                    <option value="<%=dataHorario[24].idProfesor %>" selected><%=dataHorario[24].profesor %></option>
+                                <% dataProfesores.forEach(function(dataProfesores) { 
+                                    if (dataProfesores.idProfesor!=dataHorario[24].idProfesor && dataProfesores.idProfesor!=1) {%>
+                                        <option value="<%=dataProfesores.idProfesor%>"><%=dataProfesores.nombreProfesor%> <%=dataProfesores.apellidoProfesor%></option>
+                                <% }}) %>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Divición para apariencia-->
+                    <div class="col"></div>
+                </div>
+
+                <hr>
+                <div class="row mt-3" style="margin-bottom: 20px;">
+                    <div class="col d-grid gap-2">
+                        <button type="submit" class="btn btn-primary">Editar</button>
+                    </div>
+                    <div class="col d-grid gap-2">
+                        <a href="/adminHorario" class="btn btn-outline-dark">Regresar</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
+    <!-- Se incluye el documento parcial donde se almacena la codificacion de 
+    la parte del pie de página y scripts -->
+    <%- include('../partials/footer.ejs')  %>
+
+</body>
+
+</html>

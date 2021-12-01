@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es" class="h-100">
+
+<head>
+    <!-- Se incluye el documento parcial donde se almacena la codificacion de 
+    la parte del head -->
+    <%- include('./partials/head.ejs',{titulo: 'HORARIO PROFESORES'})  %>
+</head>
+
+<body class="d-flex flex-column h-100">
+    <header>
+        <!-- Se incluye el documento parcial donde se almacena la codificacion de 
+        la parte del encabezado -->
+        <%- include('./partials/nav.ejs')  %>
+    </header>
+    <main class="flex-shrink-0">
+        <div class="container">
+            <!-- Botón de agregar alumnos -->
+            <p class="mt-3">
+                <a href="/hp/a?accion=nuevo" class="btn btn-outline-dark">Nuevo Horario</a>
+            </p>
+            <!-- Tabla que muestra todos los alumnos -->
+            <div class="table-responsive">
+                <table class="table table-hover align-middle text-center">
+                    <thead>
+                        <tr>
+                            <th scope="col">Aula</th>
+                            <th scope="col">Materia</th>
+                            <th scope="col">Profesor</th>
+                            <th colspan="3">Dia / Hora Entrada / Hora Salida</th>
+                            <th scope="col">Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Almacena en la tabla todos los alumnos que se encuentren en la base de
+                        datos -->
+                        <% data.forEach(function(data) { const myArray = data.dias.split(","),myArray2 = data.hora_inicio.split(","),myArray3 = data.hora_fin.split(","); %>
+                        <tr scope="row" id="fila-<%= data.idHorario %>">
+                            <th rowspan="<%= myArray.length %>"><%= data.nombreAula %></th>
+                            <td rowspan="<%= myArray.length %>"><%= data.nombreMateria %></td>
+                            <td rowspan="<%= myArray.length %>"><%= data.Profesor %></t>
+                            <td> <%= myArray[0] %> </td>
+                            <td> <%= myArray2[0] %> </td>
+                            <td> <%= myArray3[0] %> </td>
+                            <td rowspan="<%= myArray.length %>">
+                                <a href="/hp/a?accion=editar&idHorario=<%= data.idHorario %>"
+                                    class="btn btn-outline-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                <a href="javascript:eliminarAlumno(<%= data.idHorario %>,<%= data.DNI %>)"
+                                    class="btn btn-outline-danger btn-sm"><i class="fas fa-eraser"></i></a>
+                            </td>
+                        </tr>
+                        <% if(myArray.length>1){%>
+                        <% for(let i = 1; i <  myArray.length; i++) { %>
+                        <tr>
+                            <td> <%= myArray[i] %> </td>
+                            <td> <%= myArray2[i] %> </td>
+                            <td> <%= myArray3[i] %> </td>
+                        </tr>
+                        <% } %>
+                        <% } %>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </main>
+    <!-- Se incluye el documento parcial donde se almacena la codificacion de 
+    la parte del pie de página y scripts -->
+    <%- include('./partials/footer.ejs')  %>
+</body>
+
+</html>

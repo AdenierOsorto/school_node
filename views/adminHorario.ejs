@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es" class="h-100">
+
+<head>
+    <!-- Se incluye el documento parcial donde se almacena la codificacion de 
+    la parte del head -->
+    <%- include('./partials/head.ejs',{titulo: 'Admin Horario'})  %>
+</head>
+
+<body class="d-flex flex-column h-100" >
+    <header>
+        <!-- Se incluye el documento parcial donde se almacena la codificacion de 
+        la parte del encabezado -->
+        <%- include('./partials/navLogin.ejs', ({titulo: "Brilliant Minds"}))  %>
+    </header>
+    <main class="flex-shrink-0">
+        <div class="container-sm">
+            <h2 class="mt-3">Administración de Horarios</h2>
+            <!-- Botón de agregar horario -->
+            <p class="mt-3">
+                <a href="/addHorario" class="btn btn-outline-dark">Nuevo Horario</a>
+            </p>
+            <!-- Tabla que muestra todos los Horarios -->
+            <div class="table-responsive">
+                <% horario.forEach(function(horario) { %>
+                <table class="table table-hover align-middle">
+                    <thead>
+                        <div class="row" style="background-color: #1d577a;color:white;">
+                            <div class="col" style="margin-left: 10px;">
+                                <strong><%= horario.descripcion %></strong>
+                            </div>
+                            <div class="col">
+                                <%= horario.nombreAula %>
+                            </div>
+                            <div class="col">
+                                <div class="row justify-content-center">
+                                    <div class="col-sm-6" style="text-align: center;">
+                                        <form method="get" action="editHorario/<%= horario.idHorario%>">
+                                            <button class="btn btn-outline-warning btn-sm" style="border: none; background-color: transparent;" type="submit" title="Editar" data-toggle="tooltip"><i class="fas fa-edit"></i></button>
+                                        </form>
+                                    </div>
+                                    <div class="col-sm-6" style="text-align: center;">
+                                        <form method="post" action="deleteHorario/<%= horario.idHorario%>">
+                                            <button class="btn btn-outline-danger btn-sm" style="border: none; background-color: transparent;" type="submit" title="Eliminar" data-toggle="tooltip"><i class="fas fa-eraser"></i></button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <tr>
+                            <th scope="col" style="text-align: center;">Hora</th>
+                            <th scope="col" style="text-align: center;">Lunes</th>
+                            <th scope="col" style="text-align: center;">Martes</th>
+                            <th scope="col" style="text-align: center;">Miercoles</th>
+                            <th scope="col" style="text-align: center;">Jueves</th>
+                            <th scope="col" style="text-align: center;">Viernes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Almacena en la tabla todos los horarios que se encuentren en la base de
+                        datos -->
+                        <% detalle.forEach(function(detalle) {
+                            if (detalle.idHorario==horario.idHorario) {
+                                if (detalle.Hora!="09:00-09:55" && detalle.Hora!="15:00-15:55") {
+                            %>
+                        <tr  scope="row">
+                            <td><%= detalle.Hora %></td>
+                            <td><%= detalle.Lunes %></td>
+                            <td><%= detalle.Martes %></td>
+                            <td><%= detalle.Miercoles %></td>
+                            <td><%= detalle.Jueves %></td>
+                            <td><%= detalle.Viernes %></td>
+                        </tr>
+                        <% }else{ %>
+                        <tr  scope="row">
+                            <td><%= detalle.Hora %></td>
+                            <td style="text-align: center;">Recreo</td>
+                            <td style="text-align: center;">Recreo</td>
+                            <td style="text-align: center;">Recreo</td>
+                            <td style="text-align: center;">Recreo</td>
+                            <td style="text-align: center;">Recreo</td>
+                        </tr>
+                        <%}}}); %>
+                    </tbody>
+                </table>
+                <% }); %>
+            </div>
+
+        </div>
+    </main>
+    <!-- Se incluye el documento parcial donde se almacena la codificacion de 
+    la parte del pie de página y scripts -->
+    <%- include('./partials/footer.ejs')  %>
+</body>
+
+</html>

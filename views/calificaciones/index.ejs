@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es" class="h-100">
+
+<head>
+    <!-- Se incluye el documento parcial donde se almacena la codificacion de 
+    la parte del head -->
+    <%- include('../partials/head.ejs',{titulo: 'Clases Maestro'})  %>
+</head>
+
+<body class="d-flex flex-column h-100" >
+    <header>
+        <!-- Se incluye el documento parcial donde se almacena la codificacion de 
+        la parte del encabezado -->
+        <%- include('../partials/navLogin.ejs', ({titulo: "Brilliant Minds"}))  %>
+    </header>
+    <main class="flex-shrink-0">
+        <div class="container">
+
+            <br>
+            <div class="text-center">
+                <a href="/cal/clasesProfesor" class="btn btn-primary" type="button">Clases</a>
+            </div>
+
+        </div>
+    </main>
+    <!-- Se incluye el documento parcial donde se almacena la codificacion de 
+    la parte del pie de página y scripts -->
+    <%- include('../partials/footer.ejs')  %>
+</body>
+
+</html>

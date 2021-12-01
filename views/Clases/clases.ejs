@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es" class="h-100">
+
+<head>
+    <!-- Se incluye el documento parcial donde se almacena la codificacion de 
+    la parte del head -->
+    <%- include('../partials/head.ejs',{titulo: 'CLASES'})  %>
+</head>
+
+<body class="d-flex flex-column h-100" >
+    <header>
+        <!-- Se incluye el documento parcial donde se almacena la codificacion de 
+        la parte del encabezado -->
+        <%- include('../partials/navLogin.ejs', ({titulo: "Brilliant Minds"}))  %>
+    </header>
+    <main class="flex-shrink-0">
+        <div class="container">
+            <!-- Botón de agregar Clases -->
+            <p class="mt-3">
+                <a href="/clases/ingresarClase" class="btn btn-outline-dark">Nueva Clase</a>
+            </p>
+            <!-- Tabla que muestra todos los Clases -->
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Código</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for( let Clase = 0; Clase < Clases.length; Clase++ ) { %>
+    
+                            <tr>
+                                <td> <%= Clases[Clase].idMateria %>  </td>
+                                <td> <%= Clases[Clase].nombreMateria %> </td>
+                                <td> <%= Clases[Clase].codigoMateria %> </td>
+                                <td>
+                                    <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+                                        <form class="form-inline" method="get" action="/clases/editarClase/<%= Clases[Clase].idMateria %>">
+                                            <button class="btn btn-outline-warning btn-sm"><i class="fas fa-edit"></i></button>
+                                        </form>
+                                    </div>
+
+                                    <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+                                        <form class="form-inline" method="post" action="/clases/eliminarClase/<%= Clases[Clase].idMateria %>">
+                                            <button class="btn btn-outline-danger btn-sm"><i class="fas fa-eraser"></i></button>
+                                        </form>
+                                    </div>
+                                    
+                                </td>
+                            </tr>
+            
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </main>
+    <!-- Se incluye el documento parcial donde se almacena la codificacion de 
+    la parte del pie de página-->
+    <%- include('../partials/footer.ejs')  %>
+</body>
+
+</html>

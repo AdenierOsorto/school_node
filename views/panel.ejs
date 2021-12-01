@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+    <title>Login</title>
+</head>
+
+<body class="d-flex flex-column h-100">
+    <header>
+        <!-- Se incluye el documento parcial donde se almacena la codificacion de 
+            la parte del encabezado -->
+        <% if (user.tipo === "p") { %>
+        <%- include('./partials/navLogin.ejs', ({titulo:"Brilliant Minds", nom: user.nombreProfesor}))  %>
+        <% } else {%>
+        <%- include('./partials/navLogin.ejs', ({titulo: "Brilliant Minds"}))  %>
+        <% } %>
+    </header>
+    <main class="flex-shrink-0">
+        <div class="container">
+            <!-- valida si el usuario es profesor o alumno -->
+            <% if (user.tipo === "p") {%>
+            <div class="container mt-5 mb-5">
+                <h3>Bienvenido <%= user.nombreProfesor %> <%= user.apellidoProfesor %></h3>
+                <h5 class="text-gray opacity-75">Seleccione la actividad a la que desea acceder</h5>
+            </div>
+            <!-- valida si el usuario es admin o profesor normal -->
+            <% if (user.nombreProfesor === "admin") {%>
+            <!-- Se incluye el documento parcial donde se almacena la codificacion de 
+                    la parte del panel del Admin -->
+            <%- include('./panelAdmin.ejs')%>
+            <%}else{%>
+            <!-- Se incluye el documento parcial donde se almacena la codificacion de 
+                        la parte del panel del Profesor -->
+            <%- include('./panelProfesor.ejs')%>
+            <%}%>
+            <%}else{%>
+            <div class="container mt-5 mb-5">
+                <h3>Bienvenido <%= user.nombres%> <%= user.apellidos %></h3>
+                <h5 class="text-gray opacity-75">Seleccione la actividad a la que desea acceder</h5>
+            </div>
+            <!-- Se incluye el documento parcial donde se almacena la codificacion de 
+                la parte del panel del Alumno -->
+            <%- include('./panelAlumno.ejs')%>
+            <%}%>
+        </div>
+    </main>
+        <!-- Se incluye el documento parcial donde se almacena la codificacion de 
+        la parte del pie de página y scripts -->
+        <%- include('./partials/footer.ejs')  %>
+</body>
+
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es" class="h-100">
+
+<head>
+    <!-- Se incluye el documento parcial donde se almacena la codificacion de 
+    la parte del head -->
+    <%- include('../partials/head.ejs',{titulo: 'Editar Clase'})  %>
+</head>
+
+<body class="d-flex flex-column h-100" >
+    <header>
+        <!-- Se incluye el documento parcial donde se almacena la codificacion de 
+        la parte del encabezado -->
+        <%- include('../partials/navClases.ejs')  %>
+    </header>
+    <main class="flex-shrink-0">
+
+        <div class="container">
+            <h1 style="margin-top: 10px;" class="text-left" >Editar Nota alumno</h1>
+        
+            <form action="/cal/guardarCalificacaionAlumno/<%= alumno[0].idAlumno %>/<%= alumno[0].idMateria %>" method="post">
+                
+                <div class="row">
+                    <div class="form-group col">
+                        <label class="form-label" for="nombreMateria">Nombre clase</label>
+                        <input id="nombreInput" class="form-control" type="text" name="nombreMateria" readonly value="<%= alumno[0].nombreMateria %>">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col">
+                        <label class="form-label" for="nombreAlumno">Alumno</label>
+                        <input id="nombreInput" class="form-control" type="text" name="nombreAlumno" readonly value="<%= alumno[0].nombreAlumno %>">
+                    </div>
+                
+                    <div class="form-group col">
+                        <label class="form-label" for="DNI">Identidad</label>
+                        <input id="codigoInput" class="form-control" type="text" name="DNI" readonly value="<%= alumno[0].DNI %>">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col">
+                        <label class="form-label" for="parcial1">Nota Pacial 1</label>
+                        <input id="nombreInput" class="form-control" type="text" name="parcial1" value="<%= alumno[0].parcial1 %>">
+                    </div>
+                
+                    <div class="form-group col">
+                        <label class="form-label" for="parcial2">Nota Pacial 2</label>
+                        <input id="codigoInput" class="form-control" type="text" name="parcial2" value="<%= alumno[0].parcial2 %>">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col">
+                        <label class="form-label" for="parcial3">Nota Pacial 3</label>
+                        <input id="nombreInput" class="form-control" type="text" name="parcial3" value="<%= alumno[0].parcial3 %>">
+                    </div>
+                
+                    <div class="form-group col">
+                        <label class="form-label" for="parcial4">Nota Pacial 4</label>
+                        <input id="codigoInput" class="form-control" type="text" name="parcial4" value="<%= alumno[0].parcial4 %>">
+                    </div>
+                </div>
+                
+                <div class="row mt-3">
+                    <div class="col d-grid gap-2">
+                        <button class="btn btn-outline-dark" type="submit">Guardar</button>
+                    </div>
+                    <div class="col d-grid gap-2">
+                        <a href="/cal/calificacionAlumnos/<%= alumno[0].DNI %>/<%= alumno[0].idMateria %>" class="btn btn-outline-dark">Regresar</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+        
+    </main>
+    <!-- Se incluye el documento parcial donde se almacena la codificacion de 
+    la parte del pie de página-->
+    <%- include('../partials/footer.ejs')  %>
+</body>
+
+</html>

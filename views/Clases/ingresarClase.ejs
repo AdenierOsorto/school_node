@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es" class="h-100">
+
+<head>
+    <!-- Se incluye el documento parcial donde se almacena la codificacion de 
+    la parte del head -->
+    <%- include('../partials/head.ejs',{titulo: 'Ingresar Clase'})  %>
+</head>
+
+<body class="d-flex flex-column h-100" >
+    <header>
+        <!-- Se incluye el documento parcial donde se almacena la codificacion de 
+        la parte del encabezado -->
+        <%- include('../partials/navLogin.ejs', ({titulo: "Brilliant Minds"}))  %>
+    </header>
+    <main class="flex-shrink-0">
+
+        <div class="container">
+            <h1 style="margin-top: 10px;" class="text-left" >Nueva Clase</h1>
+        
+            <form action="/clases/guardarClase" method="post">
+                
+                <div class="row">
+                    <div class="form-group col">
+                        <label class="form-label" for="nombre">Nombre clase</label>
+                        <input id="nombreInput" class="form-control" type="text" name="nombre" placeholder="nombre">
+                    </div>
+                
+                    <div class="form-group col">
+                        <label class="form-label" for="codigo">Código Clase</label>
+                        <input id="codigoInput" class="form-control" type="text" name="codigo" placeholder="código">
+                    </div>
+                </div>
+                
+                <div class="row mt-3">
+                    <div class="col d-grid gap-2">
+                        <button class="btn btn-outline-dark" type="submit">Guardar</button>
+                    </div>
+                    <div class="col d-grid gap-2">
+                        <a href="/clases/" class="btn btn-outline-dark">Regresar</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+        
+    </main>
+    <!-- Se incluye el documento parcial donde se almacena la codificacion de 
+    la parte del pie de página-->
+    <%- include('../partials/footer.ejs')  %>
+</body>
+
+</html>

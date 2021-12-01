@@ -1,0 +1,17 @@
+<!-- estructura del login que sera insertada en la base -->
+<main class="form-signin">
+    <!-- formulario para realizar realizar las acciones con el servidor -->
+    <form class="text-center" action="/login" method="post">
+        <img src="\images\logo.png" alt="" width="250" height="200"/>
+        <!-- <h1 class="h3 mb-3 fw-normal">BRILLIANT MINDS</h1> -->
+        <div class="form-floating">
+        <input class="form-control" id="floatingInput" type="text" placeholder="Username" name="username" required="required"/>
+        <label for="floatingInput">Usuario:</label>
+        </div>
+        <div class="form-floating">
+        <input class="form-control" id="floatingPassword" type="password" placeholder="Password" name="password" required="required"/>
+        <label for="floatingPassword">Contraseña</label>
+        </div>
+        <button class="w-100 btn btn-lg btn-primary" type="submit">INGRESAR</button>
+    </form>
+</main>  

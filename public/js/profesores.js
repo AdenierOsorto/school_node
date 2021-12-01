@@ -3,9 +3,9 @@
  * @param {text} idProfesor Identificador del profesor
  * @param {text} DNI Número de identidad del profesor
  */
- function eliminarProfesor(idProfesor,DNI){
+function eliminarProfesor(idProfesor,DNI){
     $.ajax({
-        url : '/profesor/eliminar',
+        url : '/profesores/profesor/eliminar',
         method : 'DELETE',
         async:false,
         cache: false,

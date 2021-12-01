@@ -2,7 +2,7 @@ import express from 'express'
 import { editarProfesor, eliminarProfesor, guardarProfesor, profesor, profesores } from '../controllers/profesores.js';
 const router = express.Router()
 
-router.get('/profesores', profesores);
+router.get('/', profesores);
 
 router.get('/profesor', profesor);
 

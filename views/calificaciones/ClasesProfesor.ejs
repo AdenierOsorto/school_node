@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es" class="h-100">
+
+<head>
+    <!-- Se incluye el documento parcial donde se almacena la codificacion de 
+    la parte del head -->
+    <%- include('../partials/head.ejs',{titulo: 'CLASES'})  %>
+</head>
+
+<body class="d-flex flex-column h-100" >
+    <header>
+        <!-- Se incluye el documento parcial donde se almacena la codificacion de 
+        la parte del encabezado -->
+        <%- include('../partials/navClases.ejs')  %>
+    </header>
+    <main class="flex-shrink-0">
+        <div class="container">
+            <!-- Botón de agregar Clases -->
+            <p class="mt-3">
+                <a href="/cal/" class="btn btn-outline-dark">regresar</a>
+            </p>
+            <!-- Tabla que muestra todos los Clases -->
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th scope="col">Clase</th>
+                            <th scope="col">Dias</th>
+                            <th scope="col">Hora Inicio</th>
+                            <th scope="col">hora fin</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for( let Clase = 0; Clase < Clases.length; Clase++ ) { %>
+    
+                            <tr>
+                                <td> <%= Clases[Clase].nombreMateria %>  </td>
+                                <td> <%= Clases[Clase].dia %> </td>
+                                <td> <%= Clases[Clase].horaInicio %> </td>
+                                <td> <%= Clases[Clase].horaFin %> </td>
+                                <td>
+                                    <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+                                        <form class="form-inline" method="get" action="/cal/clasesAlumnos/<%= Clases[Clase].idMateria %>">
+                                            <button class="btn btn-outline-dark btn-sm">Ver Alumnos</button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+            
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </main>
+    <!-- Se incluye el documento parcial donde se almacena la codificacion de 
+    la parte del pie de página-->
+    <%- include('../partials/footer.ejs')  %>
+</body>
+
+</html>
