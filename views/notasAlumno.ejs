@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es" class="h-100">
+
+<head>
+    <!-- Se incluye el documento parcial donde se almacena la codificacion de 
+    la parte del head -->
+    <%- include('./partials/head.ejs',{titulo: 'REGISTRO'})  %>
+</head>
+
+<body class="d-flex flex-column h-100" >
+    <header>
+        <!-- Se incluye el documento parcial donde se almacena la codificacion de 
+        la parte del encabezado -->
+        <%- include('./partials/navLogin.ejs', ({titulo: "Brilliant Minds"}))  %>
+    </header>
+    <main class="flex-shrink-0">
+        <div class="container">
+            <section class="d-flex justify-content-center mt-5 ">
+                <h2><%= title %></h2>
+            </section>
+            <!-- Tabla que muestra todos los alumnos -->
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th scope="col">Alumno</th>
+                            <th scope="col">Materia</th>
+                            <th scope="col">Parcial I</th>
+                            <th scope="col">Parcial II</th>
+                            <th scope="col">Parcial III</th>
+                            <th scope="col">Parcial IV</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Mostrar en la tabla todos los horarios disponibles que se encuentren en la base de
+                        datos para el alumno -->
+                        <% data.forEach(function(data) { %>
+                        <tr  scope="row" id="fila-<%= data.idCalificacion %>">
+                            <td><%= data.nombres %></td>
+                            <td><%= data.nombreMateria %></t>
+                            <td><%= data.parcial1 %></td>
+                            <td><%= data.parcial2 %></td>
+                            <td><%= data.parcial3 %></td>
+                            <td><%= data.parcial4 %></td>
+                        </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </main>
+    <!-- Se incluye el documento parcial donde se almacena la codificacion de 
+    la parte del pie de página y scripts -->
+    <%- include('./partials/footer.ejs')  %>
+    <script src="/js/alumnos.js"></script>
+</body>
+
+</html>

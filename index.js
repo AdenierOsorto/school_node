@@ -15,7 +15,7 @@ import horario from './routes/horario.js'
 import matricula from './routes/matricula.js'
 import calificaciones from './routes/calificaciones.js'
 import clases from './routes/Clases.js'
-import hp from './routes/hp.js'
+import horariosNotasAlumno from './routes/horariosNotasAlumno.js'
 const __dirname = path.resolve()
 
 const PORT = 7777
@@ -38,6 +38,10 @@ app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 app.use('/', express.static(__dirname + '/public'));
 
+
+app.use('/',horariosNotasAlumno)
+
+
 app.use('/',login)
 app.use('/alumnos',alumnos)
 app.use('/',horario)
@@ -45,7 +49,6 @@ app.use('/',matricula)
 app.use('/',calificaciones)
 app.use('/',clases)
 app.use('/aulas',aulas)
-app.use('/hp',hp)
 app.use('/profesores',profesores)
 
 app.listen(PORT, ()=>{

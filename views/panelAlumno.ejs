@@ -3,12 +3,11 @@
 <div class="container mt-5 mb-5">
     <div class="cointainer mt-5 mb-5">
         <div class="row offset-1">
-            <a class="col-5 p-5 m-2 btn btn-outline-dark" href="#"><Horario class="far fa-calendar"> Horario</Horario></a>
-            <a class="col-5 p-5 m-2  btn btn-outline-dark" href="#"><Evaluacion class="fas fa-book"> Notas</Evaluacion></a>
+            <a class="col-10 p-5 m-2 btn btn-outline-dark" href="/horariosAlumno"><Horario class="far fa-calendar"> Horario</Horario></a>
         </div>
         <div class="row offset-1">
-            <a class="col-5 p-5 m-2 btn btn-outline-dark" href="/alumnos/perfil?idAlumno=<%= typeof titulo != 'undefined' ? titulo : 'HonduDev'  %>"><Perfil class="fas fa-user-circle"> Perfil</Perfil></a>
-            <a class="col-5 p-5 m-2  btn btn-outline-dark" href="#"><Matricula class="fas fa-clipboard-check"> Matricula</Matricula></a>
+            <a class="col-5 p-5 m-1 btn btn-outline-dark" href="/alumnos/perfil?idAlumno=<%= typeof titulo != 'undefined' ? titulo : 'HonduDev'  %>"><Perfil class="fas fa-user-circle"> Perfil</Perfil></a>
+            <a class="col-5 p-5 m-1  btn btn-outline-dark" href="/NotasAlumno"><Evaluacion class="fas fa-book"> Notas</Evaluacion></a>
         </div>
     </div>
 </div>
