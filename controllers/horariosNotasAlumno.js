@@ -12,14 +12,16 @@ export const HorariosAlumno = async (req, res) => {
     
     const {idA} = req.params
     cnn.query(`
-    select m.nombreMateria ,
-    d.dia ,
-    d.horaInicio ,
-    d.horaFin,
-    p.nombreProfesor from detallehorario as d 
-    inner join profesores as p  on d.idProfesor = p.idProfesor 
-    inner join materia as m on d.idMateria = m.idMateria
-    `, (err, result) => {
+    select m.nombreMateria, au.nombreAula, d.dia, d.horaInicio, 
+    d.horaFin, concat(p.nombreProfesor, " ",p.apellidoProfesor) as nombreProfesor 
+    from inscripcion i
+        inner join alumnos a on i.idAlumno = a.idAlumno 
+        inner join horario h on i.idHorario = h.idHorario 
+        inner join aulas au on h.idAula = au.idAula 
+        inner join detallehorario d on d.idHorario = h.idHorario 
+        inner join materia m on d.idMateria = m.idMateria 
+        inner join profesores p on d.idProfesor = p.idProfesor where i.idAlumno = ?
+    order by d.horaInicio`, [idA], (err, result) => {
         if (err) {
             console.log("Ocurrio un error", err);
             return
