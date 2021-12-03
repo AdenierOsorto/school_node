@@ -36,7 +36,7 @@
             <%}else{%>
             <!-- Se incluye el documento parcial donde se almacena la codificacion de 
                         la parte del panel del Profesor -->
-            <%- include('./panelProfesor.ejs')%>
+            <%- include('./panelProfesor.ejs', {idProfesor: user.idProfesor})%>
             <%}%>
             <%}else{%>
             <div class="container mt-5 mb-5">
@@ -45,7 +45,7 @@
             </div>
             <!-- Se incluye el documento parcial donde se almacena la codificacion de 
                 la parte del panel del Alumno -->
-            <%- include('./panelAlumno.ejs', {titulo: user.idAlumno})%>
+            <%- include('./panelAlumno.ejs', {idAlumno: user.idAlumno})%>
             <%}%>
         </div>
     </main>

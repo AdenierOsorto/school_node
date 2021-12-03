@@ -4,15 +4,15 @@ import { listarClases , listarAlumnosClase, calificacionAlumno, editarcalificaci
 const router = express.Router()
 
 //peticiones get
-router.get('/clasesProfesor', isAuthenticated, listarClases)
-router.get('/clasesAlumnos/:id', listarAlumnosClase)
-router.get('/calificacionAlumnos/:idA/:idM', calificacionAlumno)
-router.get('/editarCalificacionAlumno/:idA/:idM', editarcalificacionAlumno)
+router.get('/clasesProfesor/:idM', isAuthenticated,listarClases)
+router.get('/clasesAlumnos/:id/:idM', isAuthenticated,listarAlumnosClase)
+router.get('/calificacionAlumnos/:idA/:idM/:idP', isAuthenticated,calificacionAlumno)
+router.get('/editarCalificacionAlumno/:idA/:idM/:idP', isAuthenticated,editarcalificacionAlumno)
 
 
 
 //peticiones Post
-router.post('/guardarCalificacaionAlumno/:idA/:idM', guardarcalificacionAlguarumno)
+router.post('/guardarCalificacaionAlumno/:idA/:idM/:idP', isAuthenticated,guardarcalificacionAlguarumno)
 
 
 

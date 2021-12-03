@@ -18,7 +18,7 @@
         <div class="container">
             <h1 style="margin-top: 10px;" class="text-left" >Editar Nota alumno</h1>
         
-            <form action="/cal/guardarCalificacaionAlumno/<%= alumno[0].idAlumno %>/<%= alumno[0].idMateria %>" method="post">
+            <form action="/guardarCalificacaionAlumno/<%= alumno[0].idAlumno %>/<%= alumno[0].idMateria %>/<%= idP %>" method="post">
                 
                 <div class="row">
                     <div class="form-group col">
@@ -68,7 +68,7 @@
                         <button class="btn btn-outline-dark" type="submit">Guardar</button>
                     </div>
                     <div class="col d-grid gap-2">
-                        <a href="/cal/calificacionAlumnos/<%= alumno[0].DNI %>/<%= alumno[0].idMateria %>" class="btn btn-outline-dark">Regresar</a>
+                        <a href="/calificacionAlumnos/<%= alumno[0].DNI %>/<%= alumno[0].idMateria %>/<%= idP %>" class="btn btn-outline-dark">Regresar</a>
                     </div>
                 </div>
             </form>

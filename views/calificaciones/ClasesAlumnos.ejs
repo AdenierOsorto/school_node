@@ -17,7 +17,7 @@
         <div class="container">
             <!-- Botón de agregar Clases -->
             <p class="mt-3">
-                <a href="/cal/clasesProfesor" class="btn btn-outline-dark">regresar</a>
+                <a href="/clasesProfesor/<%= idM %>" class="btn btn-outline-dark">regresar</a>
             </p>
             <!-- Tabla que muestra todos los Clases -->
             <div class="table-responsive">
@@ -39,7 +39,7 @@
                                 <td> <%= Clases[Clase].nombreAlumno %> </td>
                                 <td>
                                     <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
-                                        <form class="form-inline" method="get" action="/cal/calificacionAlumnos/<%= Clases[Clase].DNI %>/<%= Clases[Clase].idMateria %>">
+                                        <form class="form-inline" method="get" action="/calificacionAlumnos/<%= Clases[Clase].DNI %>/<%= Clases[Clase].idMateria %>/<%= idM %>">
                                             <button class="btn btn-outline-dark btn-sm">Calificar</button>
                                         </form>
                                     </div>

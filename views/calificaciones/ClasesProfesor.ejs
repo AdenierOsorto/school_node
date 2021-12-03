@@ -29,7 +29,7 @@
                     </thead>
                     <tbody>
                         <% for( let Clase = 0; Clase < Clases.length; Clase++ ) { %>
-    
+                            
                             <tr>
                                 <td> <%= Clases[Clase].nombreMateria %>  </td>
                                 <td> <%= Clases[Clase].dia %> </td>
@@ -37,7 +37,7 @@
                                 <td> <%= Clases[Clase].horaFin %> </td>
                                 <td>
                                     <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
-                                        <form class="form-inline" method="get" action="/cal/clasesAlumnos/<%= Clases[Clase].idMateria %>">
+                                        <form class="form-inline" method="get" action="/clasesAlumnos/<%= Clases[Clase].idMateria %>/<%= idM %>">
                                             <button class="btn btn-outline-dark btn-sm">Ver Alumnos</button>
                                         </form>
                                     </div>

@@ -8,8 +8,9 @@ import cnn from "../database/connection.js"
  * @returns {*} Retorna la vista de alumnos con los datos, en caso de error, imprime el error en consola
  */
 
-
 export const HorariosAlumno = async (req, res) => {
+    
+    const {idA} = req.params
     cnn.query(`
     select m.nombreMateria ,
     d.dia ,
@@ -17,7 +18,8 @@ export const HorariosAlumno = async (req, res) => {
     d.horaFin,
     p.nombreProfesor from detallehorario as d 
     inner join profesores as p  on d.idProfesor = p.idProfesor 
-    inner join materia as m on d.idMateria = m.idMateria`, (err, result) => {
+    inner join materia as m on d.idMateria = m.idMateria
+    `, (err, result) => {
         if (err) {
             console.log("Ocurrio un error", err);
             return
@@ -29,6 +31,7 @@ export const HorariosAlumno = async (req, res) => {
 
 //Se exporta una funcion que se encargara de cargar las notas de el alumno
 export const notasAlumno = async (req, res) => {
+    const {idA} = req.params
     cnn.query(`
     select c.parcial1,
     m.nombreMateria , 
@@ -37,7 +40,7 @@ export const notasAlumno = async (req, res) => {
     c.parcial3 , 
     c.parcial4 from calificacion as c 
     inner join alumnos as a on c.idAlumno = a.idAlumno 
-    inner join materia as m on c.IdMateria = m.idMateria where c.idAlumno = '5'`, (err, result) => {
+    inner join materia as m on c.IdMateria = m.idMateria where c.idAlumno = ?`,[idA] ,(err, result) => {
         if (err) {
             console.log("Ocurrio un error", err);
             return

@@ -6,23 +6,25 @@ import cnn from "../database/connection.js"
  * @param {*} res datos de la respuesta
  * @returns {*} Retorna la vista de alumnos con los datos, en caso de error, imprime el error en consola
  */
- export const listarClases = async (req, res) => {
+export const listarClases = async (req, res) => {
+    const {idM} = req.params
+    console.log(idM);
     cnn.query(`
-        SELECT A.idMateria,
+        SELECT DISTINCT A.idMateria,
         B.nombreMateria,
         A.dia,
         A.horaInicio,
         A.horaFin
-
         FROM detallehorario as A
         inner join materia as B on A.idMateria = B.idMateria
         inner join profesores as C on A.idProfesor = C.idProfesor
-        where C.DNI like '0318199911447'`, (err, result) => { //req.session.user.DNI
+        where C.idProfesor = ?
+        order by A.horaInicio`, [idM],(err, result) => { //req.session.user.DNI
         if (err) {
             console.log("Ocurrio un error", err);
             return
         }
-        res.render('calificaciones/ClasesProfesor', { Clases: result })
+        res.render('calificaciones/ClasesProfesor', { Clases: result, idM: idM })
     })
 
 }
@@ -34,7 +36,7 @@ import cnn from "../database/connection.js"
  * @returns {*} Retorna la vista de alumnos con los datos, en caso de error, imprime el error en consola
  */
  export const listarAlumnosClase = async (req, res) => {
-
+    const {id, idM} = req.params
     cnn.query(`
         SELECT A.idMateria ,B.nombreMateria, F.DNI ,concat(F.nombres," ",F.apellidos) as 'nombreAlumno'
         FROM detallehorario as A
@@ -43,13 +45,13 @@ import cnn from "../database/connection.js"
         inner join horario as D on A.idHorario = D.idHorario
         inner join inscripcion as E on D.idHorario = E.idHorario
         inner join alumnos as F on E.idAlumno = F.idAlumno
-
-        where B.idMateria = ? and C.DNI like '0318199911447'`,[req.params.id] ,(err, result) => {     //req.session.user.DNI
+        where B.idMateria = ? and C.idProfesor = ?
+        group by B.nombreMateria`,[id, idM] ,(err, result) => {     //req.session.user.DNI
         if (err) {
             console.log("Ocurrio un error", err);
             return
         }
-        res.render('calificaciones/ClasesAlumnos', { Clases: result })
+        res.render('calificaciones/ClasesAlumnos', { Clases: result, idM: idM })
     })
 
 }
@@ -62,7 +64,7 @@ import cnn from "../database/connection.js"
  * @param {*} res datos de la respuesta
  * @returns {*} Retorna la vista de alumnos con los datos, en caso de error, imprime el error en consola
  */
- export const calificacionAlumno = async (req, res) => {
+export const calificacionAlumno = async (req, res) => {
 
     cnn.query(`
         select A.idMateria, D.idCalificacion, C.nombreMateria ,E.idAlumno,E.DNI ,concat(E.nombres," ",E.apellidos) as 'nombreAlumno', D.parcial1, D.parcial2, D.parcial3,D.parcial4,
@@ -78,7 +80,7 @@ import cnn from "../database/connection.js"
             console.log("Ocurrio un error", err);
             return
         }
-        res.render('calificaciones/calificacionAlumnos', { alumno: result })
+        res.render('calificaciones/calificacionAlumnos', { alumno: result, idP: req.params.idP })
     })
 }
 
@@ -90,7 +92,7 @@ import cnn from "../database/connection.js"
  * @returns {*} Retorna la vista de alumnos con los datos, en caso de error, imprime el error en consola
  */
  export const editarcalificacionAlumno = async (req, res) => {
-
+    
     cnn.query(`
         select A.idMateria, D.idCalificacion, C.nombreMateria ,E.idAlumno,E.DNI ,concat(E.nombres," ",E.apellidos) as 'nombreAlumno', D.parcial1, D.parcial2, D.parcial3,D.parcial4 
         FROM detallehorario as A
@@ -104,7 +106,7 @@ import cnn from "../database/connection.js"
             console.log("Ocurrio un error", err);
             return
         }
-        res.render('calificaciones/editarCalificacionAlumno', { alumno: result })
+        res.render('calificaciones/editarCalificacionAlumno', { alumno: result, idP: req.params.idP})
     })
 }
 
@@ -114,7 +116,7 @@ import cnn from "../database/connection.js"
  * @param {*} res datos de la respuesta
  * @returns {*} Retorna la vista de alumnos con los datos, en caso de error, imprime el error en consola
  */
- export const guardarcalificacionAlguarumno = async (req, res) => {
+export const guardarcalificacionAlguarumno = async (req, res) => {
     const { DNI,parcial1,parcial2,parcial3,parcial4} = req.body
 
     cnn.query(`
@@ -126,7 +128,7 @@ import cnn from "../database/connection.js"
             console.log("Ocurrio un error", err);
             return
         }
-        res.redirect(`/cal/calificacionAlumnos/${DNI}/${req.params.idM}`)
+        res.redirect(`/calificacionAlumnos/${DNI}/${req.params.idM}/${req.params.idP}`)
     })
 }
 

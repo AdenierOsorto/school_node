@@ -2,7 +2,7 @@
 <div class="container mt-5 mb-5">
     <div class="cointainer mt-5 mb-5">
         <div class="row offset-1">
-            <a class="col-11 p-5 m-2  btn btn-outline-dark" href="/clasesProfesor"><Horario class="far fa-calendar"> Horario</Horario> y <Evaluacion class="fas fa-book"> Evaluacion</i></a>
+            <a class="col-11 p-5 m-2  btn btn-outline-dark" href="/clasesProfesor/<%= typeof idProfesor != 'undefined' ? idProfesor : '0'  %>"><Horario class="far fa-calendar"> Horario</Horario> y <Evaluacion class="fas fa-book"> Evaluacion</i></a>
         </div>
     </div>
 </div>
