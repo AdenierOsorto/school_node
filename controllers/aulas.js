@@ -65,7 +65,7 @@ export const guardarAulas = async (req, res) => {
     const {
         aulanombre,
         aulaedificio } = req.body
-    res.redirect("/aulas")
+    
     if (!aulanombre || !aulaedificio) {
         res.send("Debe enviar los datos completos")
         return
